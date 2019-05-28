@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="post">
+	<insert id="insert" parameterType="postVo">
+	<![CDATA[
+	INSERT INTO post
+		(postNo, postContent, regdate, userId, songId1, songId2, songId3, title )
+	VALUES(
+		post_seq.nextval,
+		#{postContent},
+		sysdate,
+		#{userId},
+		#{songId1},
+		#{songId2},
+		#{songId3},
+		#{title}
+	)
+	]]>
+	</insert>
+
+	<select id="selectAllPost" resultType="postVo">
+	<![CDATA[
+		select postNo, postContent, regdate, userId, songId1, songId2, songId3, title
+		from post
+	]]>
+	</select>
+	
+	<select id="selectPostByPostNo" parameterType="long" resultType="postVo">
+	<![CDATA[
+		select postNo, postContent, regdate, userId, songId1, songId2, songId3, title
+		from post
+		WHERE postno = #{value} 
+	]]>
+	</select>
+
+</mapper>
